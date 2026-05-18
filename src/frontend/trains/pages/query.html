@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini-12306 | 车次查询</title>
+  <link rel="stylesheet" href="../styles/query.css">
+</head>
+<body>
+  <div class="query-shell">
+    <header class="query-topbar">
+      <div class="brand-banner">
+        <div class="brand-mark">
+          <img src="../../assets/train-logo.svg" alt="Mini-12306 火车标志">
+        </div>
+        <div class="brand-copy">
+          <strong>Mini-12306</strong>
+          <span>车次查询</span>
+        </div>
+      </div>
+      <nav class="top-nav">
+        <a href="../../home/pages/passenger.html">首页</a>
+        <a class="is-active" href="./query.html">车次查询</a>
+        <a href="#">我的订单</a>
+      </nav>
+    </header>
+
+    <section class="query-card">
+      <div class="section-head">
+        <div>
+          <p class="section-tag">Train Search</p>
+          <h1>查找你的出行车次</h1>
+        </div>
+      </div>
+
+      <form class="search-form" id="searchForm">
+        <div class="search-grid">
+          <label class="field">
+            <span>出发地</span>
+            <input id="fromStation" name="fromStation" type="text" placeholder="请输入出发地">
+          </label>
+          <label class="field">
+            <span>目的地</span>
+            <input id="toStation" name="toStation" type="text" placeholder="请输入目的地">
+          </label>
+          <label class="field">
+            <span>出发日期</span>
+            <input id="travelDate" name="travelDate" type="date">
+          </label>
+        </div>
+        <div class="form-actions">
+          <button class="primary-btn" type="submit">查询车次</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="result-card">
+      <div class="section-head">
+        <div>
+          <p class="section-tag">Result List</p>
+          <h2>查询结果</h2>
+        </div>
+        <p class="result-meta" id="resultMeta">请先输入条件后查询。</p>
+      </div>
+
+      <div class="feedback-box" id="feedbackBox">请输入出发地、目的地和日期后开始查询。</div>
+      <div class="result-list" id="resultList"></div>
+    </section>
+  </div>
+
+  <script src="../scripts/query.js"></script>
+</body>
+</html>

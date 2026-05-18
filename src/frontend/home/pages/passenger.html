@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini-12306 | 用户首页</title>
+  <link rel="stylesheet" href="../styles/home.css">
+</head>
+<body data-role="passenger">
+  <div class="home-shell">
+    <header class="home-topbar">
+      <div class="brand-banner">
+        <div class="brand-mark">
+          <img src="../../assets/train-logo.svg" alt="Mini-12306 火车标志">
+        </div>
+        <div class="brand-copy">
+          <strong>Mini-12306</strong>
+          <span>用户首页</span>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <nav class="top-nav" aria-label="用户首页导航">
+          <a class="is-active" href="./passenger.html">首页</a>
+          <a href="#">车次查询</a>
+          <a href="#">我的订单</a>
+        </nav>
+        <a class="profile-entry" href="#" aria-label="个人中心">
+          <span class="profile-avatar" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="32" cy="22" r="10" stroke="currentColor" stroke-width="4"/>
+              <path d="M14 52C18 42 24 38 32 38C40 38 46 42 50 52" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="profile-text">个人中心</span>
+        </a>
+      </div>
+    </header>
+
+    <section class="hero-card">
+      <div class="hero-copy">
+        <p class="hero-tag">Passenger Dashboard</p>
+        <h1>今天想去哪里</h1>
+        <form class="quick-search-card" action="../../trains/pages/query.html" method="get">
+          <div class="quick-search-grid">
+            <label class="quick-field">
+              <span>出发地</span>
+              <input type="text" name="fromStation" value="武汉">
+            </label>
+            <label class="quick-field">
+              <span>目的地</span>
+              <input type="text" name="toStation" value="北京">
+            </label>
+            <label class="quick-field">
+              <span>出发日期</span>
+              <input type="date" name="travelDate" value="2026-05-20">
+            </label>
+          </div>
+          <div class="hero-actions">
+            <button class="primary-btn" type="submit">查询</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <main class="content-grid">
+      <section class="panel-card">
+        <div class="section-head">
+          <div>
+            <p class="section-tag">Order Snapshot</p>
+            <h2>订单概览</h2>
+          </div>
+        </div>
+        <div class="list-stack">
+          <a class="list-card order-card" href="#">
+            <strong>G1001 武汉 → 北京</strong>
+            <p>发车时间：2026-05-20 08:00</p>
+            <p>乘车人：张三</p>
+            <p>座位：二等座 05 车 08A</p>
+            <span class="status-pill">已支付</span>
+          </a>
+          <a class="list-card order-card" href="#">
+            <strong>G6107 长沙 → 广州</strong>
+            <p>发车时间：2026-05-21 14:10</p>
+            <p>乘车人：李四</p>
+            <p>座位：商务座 02 车 01F</p>
+            <span class="status-pill">可改签</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="panel-card">
+        <div class="section-head">
+          <div>
+            <p class="section-tag">Travel Notice</p>
+            <h2>出行提醒</h2>
+          </div>
+        </div>
+        <div class="list-stack">
+          <article class="note-card">
+            <strong>建议提前到站</strong>
+            <p>发车前请预留足够进站和检票时间。</p>
+          </article>
+          <article class="note-card">
+            <strong>订单状态关注</strong>
+            <p>改签、退票和乘车状态后续会在订单页集中展示。</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

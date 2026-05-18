@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini-12306 | 管理员首页</title>
+  <link rel="stylesheet" href="../styles/home.css">
+</head>
+<body data-role="admin">
+  <div class="home-shell">
+    <header class="home-topbar">
+      <div class="brand-banner">
+        <div class="brand-mark">
+          <img src="../../assets/train-logo.svg" alt="Mini-12306 火车标志">
+        </div>
+        <div class="brand-copy">
+          <strong>Mini-12306</strong>
+          <span>管理员首页</span>
+        </div>
+      </div>
+      <nav class="top-nav">
+        <a class="is-active" href="./admin.html">首页</a>
+        <a href="#">车次管理</a>
+        <a href="#">余票调整</a>
+        <a href="#">状态维护</a>
+      </nav>
+    </header>
+
+    <section class="hero-card">
+      <div class="hero-copy">
+        <p class="hero-tag">Admin Dashboard</p>
+        <h1>后台入口先把管理信息聚合起来。</h1>
+        <p class="hero-text">
+          管理员首页当前集中展示车次维护、余票调整、状态修改和系统提醒，后续再逐步补全完整后台页面。
+        </p>
+        <div class="hero-actions">
+          <a class="primary-btn" href="#">新增车次</a>
+          <a class="secondary-btn" href="#">管理列表</a>
+        </div>
+      </div>
+    </section>
+
+    <main class="content-grid">
+      <section class="panel-card">
+        <div class="section-head">
+          <div>
+            <p class="section-tag">Train Snapshot</p>
+            <h2>车次概览</h2>
+          </div>
+        </div>
+        <div class="list-stack">
+          <article class="list-card">
+            <strong>G1001 武汉 → 北京</strong>
+            <p>余票 128 / 状态 AVAILABLE</p>
+            <span class="status-pill">正常</span>
+          </article>
+          <article class="list-card">
+            <strong>K502 长沙 → 上海</strong>
+            <p>余票 0 / 状态 CLOSED</p>
+            <span class="status-pill">停售</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel-card">
+        <div class="section-head">
+          <div>
+            <p class="section-tag">System Notice</p>
+            <h2>后台提醒</h2>
+          </div>
+        </div>
+        <div class="list-stack">
+          <article class="note-card">
+            <strong>状态修改需谨慎</strong>
+            <p>停运和停售状态会直接影响前台查票结果展示。</p>
+          </article>
+          <article class="note-card">
+            <strong>余票调整要可追踪</strong>
+            <p>后续可在后台继续补充操作记录和时间戳展示。</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
