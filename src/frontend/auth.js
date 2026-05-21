@@ -7,6 +7,7 @@
   var page = document.body.dataset.page || "login";
   var queryRole = new URLSearchParams(window.location.search).get("role");
   var role = queryRole || document.body.dataset.role || "passenger";
+  var apiBase = window.localStorage.getItem("mini12306_api_base") || "http://127.0.0.1:8080";
 
   var roleLabelMap = {
     passenger: "旅客",
@@ -177,7 +178,7 @@
 
   function buildFormOpenTag(currentPage, currentRole) {
     if (currentPage === "login") {
-      return '<form class="auth-form" action="' + (currentRole === "admin" ? "../home/pages/admin.html" : "../home/pages/passenger.html") + '" method="get">';
+      return '<form class="auth-form" action="" method="post">';
     }
 
     if (currentPage === "register") {
@@ -201,7 +202,6 @@
 
         var username = form.querySelector("input[name='username']").value.trim();
         var password = form.querySelector("input[name='password']").value;
-        var targetHome = role === "admin" ? "../home/pages/admin.html" : "../home/pages/passenger.html";
 
         if (!username || !password) {
           statusSlot.innerHTML =
@@ -210,11 +210,57 @@
         }
 
         statusSlot.innerHTML =
-          '<div class="status-box is-success"><p>登录成功，正在进入首页。</p></div>';
+          '<div class="status-box is-success"><p>正在验证登录信息，请稍候。</p></div>';
 
-        window.setTimeout(function () {
-          window.location.href = targetHome;
-        }, 700);
+        fetch(apiBase + "/api/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            username: username,
+            password: password,
+            role: role
+          })
+        })
+          .then(function (response) {
+            return response.json().catch(function () {
+              return {
+                code: 500,
+                message: "登录响应解析失败",
+                data: null
+              };
+            });
+          })
+          .then(function (result) {
+            if (result.code !== 0 || !result.data || !result.data.user) {
+              statusSlot.innerHTML =
+                '<div class="status-box is-error"><p>' + (result.message || "登录失败") + "</p></div>";
+              return;
+            }
+
+            try {
+              localStorage.setItem("mini12306_token", result.data.token || "");
+              localStorage.setItem("mini12306_user", JSON.stringify(result.data.user));
+            } catch (error) {
+              // Ignore storage failures and continue navigation.
+            }
+
+            statusSlot.innerHTML =
+              '<div class="status-box is-success"><p>登录成功，正在进入首页。</p></div>';
+
+            var targetHome = result.data.user.role === "ADMIN"
+              ? "../home/pages/admin.html"
+              : "../home/pages/passenger.html";
+
+            window.setTimeout(function () {
+              window.location.href = targetHome;
+            }, 700);
+          })
+          .catch(function () {
+            statusSlot.innerHTML =
+              '<div class="status-box is-error"><p>登录请求失败，请确认后端服务已启动，且接口地址为 ' + apiBase + ' 。</p></div>';
+          });
       });
     }
 
